@@ -4,21 +4,21 @@ cask "poit" do
 
   on_macos do
     on_arm do
-      sha256 "243617135da92d87eb6fa24dcf5e7d4c375b8aaa6a79e512c56ca8413b554ec8"
+      sha256 "eb6a0b726628ec0d45b99c49cca27faac90ac6636e2ef4a0690a3b3126280aab"
       url "https://github.com/rowicy/poit/releases/download/v#{version}/poit_#{version}_darwin_arm64.tar.gz"
     end
     on_intel do
-      sha256 "62b52e14c5fed039c5d910542cc99a03fb2523d5d3f9422451c11d06ef600ec9"
+      sha256 "b5c98af23e0c60e3eccedc2c239a9add70843a61a5c26afcb02d4b1b6b983e6b"
       url "https://github.com/rowicy/poit/releases/download/v#{version}/poit_#{version}_darwin_amd64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "f1f36e16491a353ae0cbfb5415d064e0b83ccf3fe6c13f15816e85dd4f97e402"
+      sha256 "d96871cc08df4f7f7913fc737bef1ef777cf23921d8cf37a6458c19f4636bde5"
       url "https://github.com/rowicy/poit/releases/download/v#{version}/poit_#{version}_linux_arm64.tar.gz"
     end
     on_intel do
-      sha256 "b1ff2c0a09671598231563d5dac1168a168b4bbe4dbd776f60b77e2e36772019"
+      sha256 "d3b086641cb13c112cc68faf5a7f2db585ecdcb90698066035a3a0e5e55c8075"
       url "https://github.com/rowicy/poit/releases/download/v#{version}/poit_#{version}_linux_amd64.tar.gz"
     end
   end
@@ -32,6 +32,12 @@ cask "poit" do
   end
 
   binary "poit"
+
+  postflight do
+    if OS.mac?
+      system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/poit"]
+    end
+  end
 
   # No zap stanza required
 end
