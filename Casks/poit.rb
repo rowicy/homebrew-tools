@@ -24,7 +24,7 @@ cask "poit" do
   end
 
   name "poit"
-  desc ""
+  desc "Share Markdown, HTML, and text files"
   homepage "https://github.com/rowicy/poit"
 
   livecheck do
